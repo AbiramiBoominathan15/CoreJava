@@ -14,7 +14,6 @@ public class Item {
 	public int totalPowder1;
 	public String sectionName;
 	public Date orderDate;
-
 	public java.util.Date getOrderDate() {
 		return orderDate;
 	}

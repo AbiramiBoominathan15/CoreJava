@@ -1,4 +1,5 @@
 package com.test;
+
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
@@ -13,22 +14,21 @@ public class ProjectStockManagement {
 		int num_product;
 		ProjectStockManagement stock = new ProjectStockManagement();
 		System.out.println("\t\t***Stock Management Details***\t\t");
-		StockLogin login= new StockLogin();
-		String customerId="" ;
-		String regularCustomer="";
+		StockLogin login = new StockLogin();
+		String customerId = "";
+		String regularCustomer = "";
 		login.Login();
 		login.validateInput(customerId, regularCustomer);
 		com.dao.Supplier supplier = new com.dao.Supplier();
 		Purchase purchase = new Purchase();
 		com.model.Item item = new com.model.Item(1, null, 10.99, 100);
 		Scanner sc = new Scanner(System.in);
-	
-	//	System.out.println("Enter CustomerID:");
-		//String customerIdPattern = sc.nextLine();
-		//item.setCustomerIdPattern(customerIdPattern);
-		//System.out.print("Are you a regular customer? (yes/no): ");
-		//String yesNoPattern = sc.nextLine();
-		//item.setCustomerIdPattern(yesNoPattern);
+		// System.out.println("Enter CustomerID:");
+		// String customerIdPattern = sc.nextLine();
+		// item.setCustomerIdPattern(customerIdPattern);
+		// System.out.print("Are you a regular customer? (yes/no): ");
+		// String yesNoPattern = sc.nextLine();
+		// item.setCustomerIdPattern(yesNoPattern);
 		System.out.println("\n");
 		System.out.println("_______________________________________________________________________________________");
 		System.out.println("\tchoose the section \n\n*MasalaPowder,\n*cosmetics,\n*stationary");
