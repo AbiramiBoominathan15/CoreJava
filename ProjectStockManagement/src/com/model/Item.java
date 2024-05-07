@@ -3,6 +3,8 @@ package com.model;
 import java.util.Date;
 
 public class Item {
+	
+	
 	public int id;
 	public String name;
 	public double price;

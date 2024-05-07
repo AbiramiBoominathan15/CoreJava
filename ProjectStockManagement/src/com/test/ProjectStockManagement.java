@@ -1,15 +1,17 @@
 package com.test;
+
 import java.sql.SQLException;
 import java.util.Date;
 import java.util.Scanner;
-import java.util.function.Supplier;
-
 import com.dao.Purchase;
 import com.dao.StockLogin;
+//import com.dao.UserLogin;
 import com.model.Item;
 import com.util.StockManagementConnection;
+
 public class ProjectStockManagement {
 	int totalPowder;
+	
 	public static void main(String[] args) throws ClassNotFoundException, SQLException {
 		int num_product;
 		ProjectStockManagement stock = new ProjectStockManagement();
@@ -17,6 +19,7 @@ public class ProjectStockManagement {
 		StockLogin login = new StockLogin();
 		String customerId = "";
 		String regularCustomer = "";
+
 		Item login2 = StockLogin.Login();
 		StockLogin.validateInput(customerId, regularCustomer);
 		com.dao.Supplier supplier = new com.dao.Supplier();
@@ -132,7 +135,7 @@ public class ProjectStockManagement {
 			break;
 		case "stationary":
 			System.out.println("-------------------------------------------------------------------------------");
-			System.out.println("pen | \tpencile | \t rubber | \tscale | \tbox\t | Note |\tBook");
+			System.out.println("pen | \tpencil | \t rubber | \tscale | \tbox\t | Note |\tBook");
 			System.out.println("-------------------------------------------------------------------------------");
 			System.out.println("\nEnter Product name:");
 			String itemName11 = sc.nextLine();
@@ -145,7 +148,7 @@ public class ProjectStockManagement {
 				item.setPrice(price11);
 				item.settotalPowder(totalPowder);
 				break;
-			case "pencile":
+			case "pencil":
 				price11 = 35;
 				totalPowder = 1100;
 				item.setPrice(price11);
@@ -212,11 +215,12 @@ public class ProjectStockManagement {
 		System.out.println(" \n \tAdmin Details");
 		supplier.soldOutPockets(item.gettotalPowder(), num_product1, item.getSectionName(), item);
 		supplier.noReturn();
-		
+
 		supplier.prepaidMoney();
-	//	StockManagementConnection.insertuser(customerId,regularCustomer,sectionName);
-		StockManagementConnection.insertuser(login2.getCustomerId(), login2.getRegularCustomer(),sectionName,login2.getUsername(),login2.getPassword());
-		StockManagementConnection.read(login2.getUsername(),login2.getPassword(),login2.getRegularCustomer(),login2.sectionName);
+		// StockManagementConnection.insertuser(customerId,regularCustomer,sectionName);
+		StockManagementConnection.insertuser(login2.getCustomerId(), login2.getRegularCustomer(), sectionName,
+				login2.getUsername(), login2.getPassword());
+		StockManagementConnection.read(login2.getCustomerId());
 		sc.close();
 	}
 }

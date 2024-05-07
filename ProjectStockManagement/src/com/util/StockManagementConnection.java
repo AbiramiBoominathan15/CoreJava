@@ -1,6 +1,6 @@
 package com.util;
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.DriverManager;        
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,13 +12,13 @@ public class StockManagementConnection {
         Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3308/test_db_7", "root", "root");
         return connection;
     }
-
     public static void insertuser(String customerId, String regularCustomer, String sectionName,String username, String password)
     
     		throws ClassNotFoundException, SQLException {
+    	try {
     	System.out.printf(customerId,regularCustomer,sectionName,username,password);
         Connection connection = StockManagementConnection.getConnection();
-     String insertQuery = "INSERT INTO StockProject VALUES (?,?,?,?,?)";
+        String insertQuery = "INSERT INTO StockProject VALUES (?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertQuery);
         preparedStatement.setString(1, customerId);
         preparedStatement.setString(2, regularCustomer);
@@ -27,6 +27,11 @@ public class StockManagementConnection {
         preparedStatement.setString(5, password);
         int rows = preparedStatement.executeUpdate();
         System.out.println(rows + " rows inserted");
+    	}
+    	catch(Exception ex)
+    	{
+    		ex.printStackTrace();
+    	}
     }
 
 //    public static void update() throws ClassNotFoundException, SQLException {
@@ -69,27 +74,26 @@ public class StockManagementConnection {
 //        System.out.println(rows + " rows inserted for user " +username);
 //        connection.close();
 //    }
-   public static void read(String username,String password,String regularCustomer,String sectionName) throws ClassNotFoundException, SQLException{         
-        Connection connection = getConnection();
+  public static void read(String customerId) throws ClassNotFoundException, SQLException{         
+      Connection connection = getConnection();
       System.out.println(connection);
-      String save="SELECT *FROM StockProject WHERE customerId='abi123'";
+      String save="SELECT *FROM StockProject WHERE customerId='"+customerId+"'";
       PreparedStatement prepareStatement = connection.prepareStatement(save);
       Statement stmt = connection.createStatement();
       ResultSet rows = stmt.executeQuery(save);
       while (rows.next()) {
-          int id = rows.getInt("customerId");
-           username = rows.getString(username);
-           regularCustomer= rows.getString(regularCustomer);
-           password = rows.getString(password);
-           sectionName= rows.getString(sectionName);
+          String id = rows.getString("customerId");
+           String username = rows.getString("username");
+           String regularCustomer= rows.getString("regularCustomer");
+           String  password = rows.getString("password");
+           String  sectionName= rows.getString("sectionName");
           System.out.println("Retrieved Data");
           System.out.println(" Name : " + username
                   + "\t\t password : " + password+"\tregularCustomer "+regularCustomer+"\tsectionName:"+sectionName);
-      }
-      
+      }     
 System.out.println(rows+" retrieved");
+connection.close();
+prepareStatement.close();
+rows.close();
 }
-
-
 }
-

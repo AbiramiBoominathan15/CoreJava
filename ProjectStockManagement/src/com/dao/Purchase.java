@@ -6,6 +6,7 @@ public class Purchase {
 	static double discount = 0;
 
 	public void totalPrice(double price, int num_product1) {
+
 		double totalPrice = price * num_product1;
 		System.out.println("Total price is " + totalPrice);
 		if (totalPrice > 1000 && totalPrice < 1500) {
@@ -33,6 +34,6 @@ public class Purchase {
 			System.out.println("Discount not approved for your product, price is too low");
 			System.out.println("Offers are only available with our coupon code");
 		}
-	}
 
+	}
 }

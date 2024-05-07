@@ -7,6 +7,9 @@ import com.model.Item;
 public class Supplier extends AbstractItem implements InterfaceItem {
 	public void noReturn() {
 		System.out.println("*Damaged pockets are cannot be accepted");
+		
+		
+		
 	}
 
 	@Override
